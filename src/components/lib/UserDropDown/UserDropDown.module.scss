@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+
+.name,
+.role {
+    color: white;
+    margin: 5px 0;
+    line-height: 10px;
+    font-size: 13px;
+}
+
+.role {
+    color: #fff;
+}

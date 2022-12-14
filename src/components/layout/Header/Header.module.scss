@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    flex-basis: 30%;
+    transition: 200ms;
+    font-weight: 600;
+    margin-left: 150px;
+    font-size: 15px;
+    color: #fff;
+}

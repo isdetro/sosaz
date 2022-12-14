@@ -1,0 +1,8 @@
+@import "src/styles/index";
+
+.contentContainer {
+    @include page;
+    height: calc(100vh - 84px) !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
