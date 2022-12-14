@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../../components/layout/';
 import Layout from 'antd/es/layout/layout';
 import style from './Login.module.scss';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, rememberUserAction } from '../../features/user/userSlice';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user.user);
+  const navigate = useNavigate();
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+    const { remember, ...user } = values;
+    dispatch(rememberUserAction(remember));
+    dispatch(loginUser(user));
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
   return (
     <Layout className={style.loginContainer}>
       <div className={style.formContainer}>
@@ -34,12 +49,12 @@ const Login = () => {
           autoComplete='off'
         >
           <Form.Item
-            label='Username'
-            name='username'
+            label='Email'
+            name='email'
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: 'Elektron poçt ünvanın daxil edin!',
               },
             ]}
           >
@@ -52,7 +67,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: 'Şifrənizi daxil edin!',
               },
             ]}
           >

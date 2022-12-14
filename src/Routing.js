@@ -20,6 +20,9 @@ import {
   PAGE_USERS,
 } from './utils/navigation';
 
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import RoleProtectedRoute from './components/auth/RoleProtectedRoute';
+
 const Login = lazy(async () => import('./pages/Login'));
 const Main = lazy(async () => import('./components/layout/Main'));
 const Home = lazy(async () => import('./pages/Home'));
@@ -47,40 +50,42 @@ export const Routing = () => {
     <Router>
       <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route path='/' element={<Main />}>
-            <Route path={PAGE_HOME.path} element={<Home />} />
-            <Route path={PAGE_ORDERS.path} element={<Orders />} />
-            <Route
-              path={PAGE_ORDER_POPULATİON.path}
-              element={<OrderPopulation />}
-            />
-            <Route
-              path={PAGE_ORDER_CORPORATE.path}
-              element={<OrderCorporate />}
-            />
-            <Route path={PAGE_WORKERS.path} element={<Workers />} />
-            <Route path={PAGE_WORKERS_LIST.path} element={<WorkerList />} />
-            <Route
-              path={PAGE_WORKERS_ADDRESS.path}
-              element={<WorkerAddress />}
-            />
-            <Route path={PAGE_CUSTOMERS.path} element={<Customers />} />
-            <Route
-              path={PAGE_CUSTOMER_POPULATION.path}
-              element={<CustomerPopulation />}
-            />
-            <Route
-              path={PAGE_CUSTOMER_CORPORATE.path}
-              element={<CustomerCorporate />}
-            />
-            <Route path={PAGE_REPORT.path} element={<Reports />} />
-            <Route path={PAGE_SETTINGS.path} element={<Settings />} />
-            <Route
-              path={PAGE_QUESTİONNAİRE.path}
-              element={<SettingQustionaries />}
-            />
-            <Route path={PAGE_EMAIL.path} element={<SettingEmail />} />
-            <Route path={PAGE_USERS.path} element={<SettingUsers />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/' element={<Main />}>
+              <Route index element={<Home />} />
+              <Route path={PAGE_ORDERS.path} element={<Orders />} />
+              <Route
+                path={PAGE_ORDER_POPULATİON.path}
+                element={<OrderPopulation />}
+              />
+              <Route
+                path={PAGE_ORDER_CORPORATE.path}
+                element={<OrderCorporate />}
+              />
+              <Route path={PAGE_WORKERS.path} element={<Workers />} />
+              <Route path={PAGE_WORKERS_LIST.path} element={<WorkerList />} />
+              <Route
+                path={PAGE_WORKERS_ADDRESS.path}
+                element={<WorkerAddress />}
+              />
+              <Route path={PAGE_CUSTOMERS.path} element={<Customers />} />
+              <Route
+                path={PAGE_CUSTOMER_POPULATION.path}
+                element={<CustomerPopulation />}
+              />
+              <Route
+                path={PAGE_CUSTOMER_CORPORATE.path}
+                element={<CustomerCorporate />}
+              />
+              <Route path={PAGE_REPORT.path} element={<Reports />} />
+              <Route path={PAGE_SETTINGS.path} element={<Settings />} />
+              <Route
+                path={PAGE_QUESTİONNAİRE.path}
+                element={<SettingQustionaries />}
+              />
+              <Route path={PAGE_EMAIL.path} element={<SettingEmail />} />
+              <Route path={PAGE_USERS.path} element={<SettingUsers />} />
+            </Route>
           </Route>
           <Route path='/administrator' element={<Login />} />
         </Routes>
