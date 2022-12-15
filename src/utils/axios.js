@@ -16,7 +16,7 @@ customFetch.interceptors.request.use(
     return request;
   },
   (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 
@@ -26,6 +26,6 @@ customFetch.interceptors.response.use(
     return response;
   },
   (error) => {
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );

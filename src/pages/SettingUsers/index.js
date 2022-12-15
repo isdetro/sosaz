@@ -1,3 +1,3 @@
-import SettingUser from './SettingUser';
+import SettingUsers from './SettingUser';
 
-export default SettingUser;
+export default SettingUsers;

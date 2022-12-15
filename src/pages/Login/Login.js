@@ -9,7 +9,13 @@ import { useNavigate } from 'react-router';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user.user);
+  const isLoading = useSelector((store) => store.user.isLoading);
+  const userObject = useSelector((store) => store.user);
+  let user;
+  if (userObject) {
+    user = userObject.user;
+  }
+
   const navigate = useNavigate();
 
   const onFinish = (values) => {
@@ -91,7 +97,7 @@ const Login = () => {
               span: 16,
             }}
           >
-            <Button type='primary' htmlType='submit'>
+            <Button type='primary' htmlType='submit' loading={isLoading}>
               Submit
             </Button>
           </Form.Item>

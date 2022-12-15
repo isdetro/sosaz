@@ -1,0 +1,47 @@
+export const settinUser = [{}];
+
+export const settingUserDataSource = [
+  {
+    id: '1',
+    name: 'Shamshad',
+    surname: 'Alizade',
+    email: 'shamo@gmail.com',
+    phone: '+994556367032',
+    address: 'Insaatcilar',
+    status: 1,
+    user_type: 3,
+    photo: 'aaa',
+    birth_date: '1988-11-29',
+    created_at: '2022-12-05T07:24:43.000000Z',
+    updated_at: '2022-12-14T06:52:33.000000Z',
+  },
+  {
+    id: '2',
+    name: 'Alasgar',
+    surname: 'Mahmudov',
+    email: 'mahmudov@gmail.com',
+    phone: '+994559687615',
+    address: 'Narimonov',
+    status: 1,
+    user_type: 0,
+    photo: 'aaaaaa',
+    birth_date: '1988-08-26',
+    created_at: '2022-12-05T07:24:43.000000Z',
+    updated_at: '2022-12-14T06:52:33.000000Z',
+  },
+
+  {
+    id: '3',
+    name: 'Rauf',
+    surname: 'Nabiyev',
+    email: 'rauf@gmail.com',
+    phone: '+994556547890',
+    address: 'Insaatcilar',
+    status: 1,
+    user_type: 3,
+    photo: 'aaa',
+    birth_date: '1988-11-29',
+    created_at: '2022-12-05T07:24:43.000000Z',
+    updated_at: '2022-12-14T06:52:33.000000Z',
+  },
+];

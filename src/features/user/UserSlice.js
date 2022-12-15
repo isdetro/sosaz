@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { customFetch } from '../../utils/axios';
-import { userLoginThunk } from '../../api/userThunk';
+import {
+  userLoginThunk,
+  getAllUserThunk,
+  registerUserThunk,
+} from '../../api/userThunk';
 
 import {
   getUserFromLocalStorage,
@@ -12,26 +16,23 @@ import {
 } from '../../utils/localstorage';
 
 const initialState = {
-  // isSidebarOpen: false,
+  users: [],
   isLoading: false,
+  totalUsers: 0,
   user: getRememberUserState() ? getUserFromLocalStorage() : null,
 };
 
-export const registerUser = createAsyncThunk(
-  'user/registerUser',
-  async (user, thunkAPI) => {
-    try {
-      const resp = await customFetch.post('/admin/register', user);
-      console.log(resp.data, 'register');
-      return resp.data;
-    } catch (error) {
-      console.log(error, 'register user error');
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
-  }
+export const getAllUsers = createAsyncThunk(
+  'user/getAllUsers',
+  getAllUserThunk
 );
 
 export const loginUser = createAsyncThunk('user/loginUser', userLoginThunk);
+
+export const registerUser = createAsyncThunk(
+  'user/registerUser',
+  registerUserThunk
+);
 
 export const updateUser = createAsyncThunk(
   'user/updateUser',
@@ -66,15 +67,24 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    [getAllUsers.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getAllUsers.fulfilled]: (state, { payload: { data, total } }) => {
+      state.isLoading = false;
+      state.users = data;
+      state.totalUsers = total;
+    },
+    [getAllUsers.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    },
     [registerUser.pending]: (state) => {
       state.isLoading = true;
     },
     [registerUser.fulfilled]: (state, { payload }) => {
-      const { user } = payload;
       state.isLoading = false;
-      state.user = user;
-      addUserToLocalStorage(user);
-      toast.success(`Hello There ${user.name}`);
+      toast.success(`İstifadəçi uğurla yaradıldı`);
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
