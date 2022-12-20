@@ -1,7 +1,7 @@
 import { Button, Space, Tooltip, Switch } from 'antd';
 import { AiFillEdit, AiFillEye } from '../../utils/icons';
 import SwitchComponent from '../../components/lib/Switch';
-import { changeUserStatus } from '../../features/user/userSlice';
+import { changeUserStatus } from '../../features/user/UserSlice';
 
 const user_type = {
   0: 'Admin',

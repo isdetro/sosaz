@@ -11,7 +11,7 @@ import {
   registerUser,
   setUserDetail,
   updateUser,
-} from '../../features/user/userSlice';
+} from '../../features/user/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import FormModal from '../../components/lib/FormModal';
 import SettingUserForm from './Form';

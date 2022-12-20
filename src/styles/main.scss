@@ -1,6 +1,6 @@
 $main-color: purple;
-$sidebar-button: purple;
-$select-color: purple;
+$sidebar-button: #b64dff;
+$select-color: #b64dff;
 *{
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@ td.ant-table-cell {
 }
 
 .ant-layout-sider-trigger {
-    background: $sidebar-button;
+    background: $sidebar-button !important;
 }
 
 .ant-layout-sider-children {
@@ -71,10 +71,20 @@ td.ant-table-cell {
     color: white;
 }
 
+.ant-menu-submenu .ant-menu-submenu-inline .ant-menu-submenu-selected,
 .ant-menu-item-selected {
     background: $select-color  !important;
     width: auto !important;
 
+}
+.ant-menu-title-content{
+    color: white;
+}
+.ant-menu-submenu-selected{
+    background-color: $select-color;
+}
+.ant-menu-submenu-open{
+    background-color: $main-color;
 }
 
 .ant-menu-submenu-selected,

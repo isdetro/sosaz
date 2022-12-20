@@ -4,7 +4,7 @@ import Layout from 'antd/es/layout/layout';
 import style from './Login.module.scss';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, rememberUserAction } from '../../features/user/userSlice';
+import { loginUser, rememberUserAction } from '../../features/user/UserSlice';
 import { useNavigate } from 'react-router';
 
 const Login = () => {

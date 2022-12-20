@@ -1,6 +1,6 @@
 import { Button, Dropdown, Menu } from 'antd';
 import Avatar from '../../Avatar/Avatar';
-import { logoutUser } from '../../../../features/user/userSlice';
+import { logoutUser } from '../../../../features/user/UserSlice';
 import { useDispatch } from 'react-redux';
 
 const DropdownMenu = ({ src, className }) => {

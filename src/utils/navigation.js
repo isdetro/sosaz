@@ -83,7 +83,7 @@ export const PAGE_CUSTOMER_CORPORATE = {
 };
 
 export const PAGE_CUSTOMERS = {
-  label: 'Müşdərilər',
+  label: 'Müştərilər',
   path: CUSTOMERS_PATH,
   icon: <FaUserAlt />,
   children: [PAGE_CUSTOMER_POPULATION, PAGE_CUSTOMER_CORPORATE],

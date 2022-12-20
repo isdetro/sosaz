@@ -1,5 +1,5 @@
 import { customFetch } from '../utils/axios';
-import { getAllUsers, logoutUser } from '../features/user/userSlice';
+import { getAllUsers, logoutUser } from '../features/user/UserSlice';
 
 export const userLoginThunk = async (user, thunkAPI) => {
   try {
