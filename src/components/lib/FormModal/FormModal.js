@@ -7,7 +7,7 @@ const FormModal = ({ title, titleEdit, onSubmit, children, onEdit }, ref) => {
   const { useForm } = Form;
   const [form] = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [isVisible, setIsVisible] = useState();
+  const [isVisible, setIsVisible] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
   const [confirmModal, setConfirmModal] = useState(false);
@@ -45,16 +45,23 @@ const FormModal = ({ title, titleEdit, onSubmit, children, onEdit }, ref) => {
 
   const onFormSubmit = useCallback(() => {
     const data = form.getFieldsValue();
+    console.log(data, 'datafrom from');
 
     setIsLoading(true);
 
     if (isEditing && onEdit !== undefined) {
       setIsLoading(true);
-      onEdit(data);
+      onEdit(data)
+        .then(() => setIsLoading(true))
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
     } else {
       setIsLoading(true);
       onSubmit(data)
-        .then((data) => setIsLoading(true))
+        .then(() => {
+          form.resetFields();
+          setIsLoading(true);
+        })
         .catch((error) => console.log(error))
         .finally(() => setIsLoading(false));
     }
@@ -96,7 +103,7 @@ const FormModal = ({ title, titleEdit, onSubmit, children, onEdit }, ref) => {
         confirmModal={confirmModal}
       />
       <AntModal
-        width={window.screen.width * 0.75}
+        width={window.screen.width * 0.5}
         okText={FORM_CONFIRM}
         cancelText={FORM_CANCEL}
         title={isEditing ? titleEdit : title}

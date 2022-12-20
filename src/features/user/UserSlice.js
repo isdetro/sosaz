@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { customFetch } from '../../utils/axios';
+
 import {
   userLoginThunk,
   getAllUserThunk,
   registerUserThunk,
+  changeUserStatusThunk,
+  updateUserThunk,
 } from '../../api/userThunk';
 
 import {
@@ -17,15 +19,12 @@ import {
 
 const initialState = {
   users: [],
+  isUserStatusLoading: false,
   isLoading: false,
   totalUsers: 0,
+  singleUser: {},
   user: getRememberUserState() ? getUserFromLocalStorage() : null,
 };
-
-export const getAllUsers = createAsyncThunk(
-  'user/getAllUsers',
-  getAllUserThunk
-);
 
 export const loginUser = createAsyncThunk('user/loginUser', userLoginThunk);
 
@@ -34,21 +33,17 @@ export const registerUser = createAsyncThunk(
   registerUserThunk
 );
 
-export const updateUser = createAsyncThunk(
-  'user/updateUser',
-  async (user, thunkAPI) => {
-    try {
-      const resp = await customFetch.patch('/auth/updateUser', user);
-      return resp.data;
-    } catch (error) {
-      if (error.response.status === 401) {
-        thunkAPI.dispatch(logoutUser());
-        return thunkAPI.rejectWithValue('Unauthorized !Logging  out');
-      }
-      return thunkAPI.rejectWithValue(error.response.data.msg);
-    }
-  }
+export const getAllUsers = createAsyncThunk(
+  'user/getAllUsers',
+  getAllUserThunk
 );
+
+export const changeUserStatus = createAsyncThunk(
+  'user/changeUserStatis',
+  changeUserStatusThunk
+);
+
+export const updateUser = createAsyncThunk('user/updateUser', updateUserThunk);
 
 const userSlice = createSlice({
   name: 'user',
@@ -65,6 +60,9 @@ const userSlice = createSlice({
     rememberUserAction: (state, { payload }) => {
       rememberUser(payload);
     },
+    setUserDetail: (state, { payload }) => {
+      state.singleUser = state.users.find((user) => user.id === payload);
+    },
   },
   extraReducers: {
     [getAllUsers.pending]: (state) => {
@@ -73,6 +71,7 @@ const userSlice = createSlice({
     [getAllUsers.fulfilled]: (state, { payload: { data, total } }) => {
       state.isLoading = false;
       state.users = data;
+      state.singleUser = state.users[0];
       state.totalUsers = total;
     },
     [getAllUsers.rejected]: (state, { payload }) => {
@@ -109,18 +108,29 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [updateUser.fulfilled]: (state, { payload }) => {
+      console.log(payload, 'update user');
       const { user } = payload;
       state.isLoading = false;
-      state.user = user;
-      addUserToLocalStorage(user);
-      toast.success(`User Updated`);
+      toast.success(`İstifadəşi məlumatları uğurla yeniləndi`);
     },
     [updateUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     },
+    [changeUserStatus.pending]: (state) => {
+      state.isUserStatusLoading = true;
+    },
+    [changeUserStatus.fulfilled]: (state, { payload }) => {
+      state.isUserStatusLoading = false;
+      toast.success(`İstifadəçi statusu uğurla dəyişdirildi`);
+    },
+    [changeUserStatus.rejected]: (state, { payload }) => {
+      state.isUserStatusLoading = false;
+      toast.error(payload);
+    },
   },
 });
 
-export const { logoutUser, rememberUserAction } = userSlice.actions;
+export const { logoutUser, rememberUserAction, setUserDetail } =
+  userSlice.actions;
 export default userSlice.reducer;

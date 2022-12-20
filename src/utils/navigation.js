@@ -24,7 +24,7 @@ export const CUSTOMER_POPULATION_PATH = `${CUSTOMERS_PATH}/population`;
 export const CUSTOMER_CORPORATE_PATH = `${CUSTOMERS_PATH}/corporate`;
 
 /// settings portalinin childrenleridi
-export const QUESTİONNAİRE_PATH = `${SETTINGS_PATH}/questionnaire`;
+export const SERVICES_PATH = `${SETTINGS_PATH}/questionnaire`;
 export const EMAİL_PATH = `${SETTINGS_PATH}/email`;
 export const USERS_PATH = `${SETTINGS_PATH}/users`;
 
@@ -97,9 +97,9 @@ export const PAGE_REPORT = {
 };
 
 // settings
-export const PAGE_QUESTİONNAİRE = {
+export const PAGE_SERVICES = {
   label: 'Soraqçalar',
-  path: QUESTİONNAİRE_PATH,
+  path: SERVICES_PATH,
 };
 
 export const PAGE_EMAIL = {
@@ -116,7 +116,7 @@ export const PAGE_SETTINGS = {
   label: 'Tənzimləmələr',
   path: SETTINGS_PATH,
   icon: <IoSettingsSharp />,
-  children: [PAGE_QUESTİONNAİRE, PAGE_EMAIL, PAGE_USERS],
+  children: [PAGE_SERVICES, PAGE_EMAIL, PAGE_USERS],
 };
 
 export const PAGES = [

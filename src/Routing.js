@@ -15,7 +15,7 @@ import {
   PAGE_CUSTOMER_CORPORATE,
   PAGE_REPORT,
   PAGE_SETTINGS,
-  PAGE_QUESTİONNAİRE,
+  PAGE_SERVICES,
   PAGE_EMAIL,
   PAGE_USERS,
 } from './utils/navigation';
@@ -39,9 +39,7 @@ const CustomerPopulation = lazy(async () =>
 const CustomerCorporate = lazy(async () => import('./pages/CustomerCorporate'));
 const Reports = lazy(async () => import('./pages/Report'));
 const Settings = lazy(async () => import('./pages/Setting'));
-const SettingQustionaries = lazy(async () =>
-  import('./pages/SettingQuestionaries')
-);
+const SettingServices = lazy(async () => import('./pages/SettingServices'));
 const SettingEmail = lazy(async () => import('./pages/SettingEmail'));
 const SettingUsers = lazy(async () => import('./pages/SettingUsers'));
 
@@ -79,10 +77,7 @@ export const Routing = () => {
               />
               <Route path={PAGE_REPORT.path} element={<Reports />} />
               <Route path={PAGE_SETTINGS.path} element={<Settings />} />
-              <Route
-                path={PAGE_QUESTİONNAİRE.path}
-                element={<SettingQustionaries />}
-              />
+              <Route path={PAGE_SERVICES.path} element={<SettingServices />} />
               <Route path={PAGE_EMAIL.path} element={<SettingEmail />} />
               <Route path={PAGE_USERS.path} element={<SettingUsers />} />
             </Route>
