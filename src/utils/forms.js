@@ -17,7 +17,7 @@ export const FORM_UPLOAD_ACCEPT = 'image/png, image/jpeg';
 export const IMG_CROP_TITLE_TEXT = 'Şəkili redaktə et';
 
 export const REQUIRED_FIELD_FILE = [
-  { required: true, message: REQUIRED_FIELD },
+  { required: true , message: REQUIRED_FIELD },
 ];
 
 export const EMAIL_ADDRESS_PLACEHOLDER = `Elektron poçt ${PLACE_HOLDER_ENDING}`;
@@ -81,8 +81,8 @@ export const REQUIRED_INPUT_MASK = [
 export const SETTING_USER_OPTIONS = [
   {
     key: 0,
-    value: '0',
+    value: 0,
     label: 'Admin',
   },
-  { key: 1, value: '1', label: 'Moderator' },
+  { key: 1, value: 1, label: 'Moderator' },
 ];
